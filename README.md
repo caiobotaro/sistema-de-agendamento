@@ -14,6 +14,14 @@ Agenda:
 
 - Nome do evento - Dia - Hora – Pessoa
 
+# Endereço de Deploy - GitHub Pages
+
+- N/A
+
+# Protótipo
+
+- N/A
+
 # Checklist
 
 - [X] Criar o repositório no GitHub com a estrutura do Gitflow, ou seja, branches main e develop.
