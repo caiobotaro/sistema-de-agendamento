@@ -2,7 +2,7 @@
 
 O usuário poderá cadastrar pessoas (clientes, pacientes, etc) e assim adicioná-los a sua agenda para um maior controle de tempo e disposição de horário. Com o proposito de uso para atendimentos, reuniões e agendamentos em geral.
 
-Acompanhar seus agendamentos em formato de calendário, mostrando por dia, semana ou mês.
+Acompanhar seus agendamentos em formato de listagem.
 
 Entidades:
 
@@ -20,7 +20,7 @@ Agenda:
 
 # Protótipo
 
-- N/A
+- https://www.figma.com/file/0wQMCi59hz8QkWHN6MYBqI/Agenda?node-id=1%3A2
 
 # Checklist
 
