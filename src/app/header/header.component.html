@@ -2,7 +2,7 @@
   <nav>
     <div class="nav-wrapper">
       <div class="container">
-        <a class="brand-logo" href="#">
+        <a [routerLink]="['/']" class="brand-logo">
           <span>
             <i class="material-icons left">today</i>
             Agenda
@@ -13,7 +13,7 @@
         </a>
         <ul class="right hide-on-med-and-down">
           <li>
-            <a href="#" class="flow-text">Horários</a>
+            <a [routerLink]="['/horarios', 'ins']" class="flow-text">Horários</a>
           </li>
         </ul>
       </div>
@@ -29,6 +29,6 @@
           </span>
       </div>
     </div>
-    <li><a href="#" class="flow-text" style="color: white;">Horários</a></li>
+    <li><a [routerLink]="['/horarios', 'ins']" class="flow-text" style="color: white;">Horários</a></li>
   </ul>
 </div>
