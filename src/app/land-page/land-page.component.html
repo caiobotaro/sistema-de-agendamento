@@ -1,0 +1,25 @@
+<div class="container about" style="padding-top: 30px;">
+  <div [hidden]="this.isHideProperty">
+    <span class="titulo">Agendamento</span>
+    <hr />
+    <div class="row">
+      <span [hidden]="!this.isHideProperty">Grid</span>
+
+      <div class="col s6">
+        <a [routerLink]="['/horarios', 'ins']">
+          <div class="card-panel center my-card-button edit">
+            <span class="white-text flow-text"> Salvar </span>
+          </div>
+        </a>
+      </div>
+      <div class="col s6">
+        <a [routerLink]="['/horarios', 'upd']">
+          <div class="card-panel center my-card-button edit">
+            <span class="white-text flow-text"> Editar </span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
