@@ -1,25 +1,56 @@
 <div class="container about" style="padding-top: 30px;">
   <div [hidden]="this.isHideProperty">
-    <span class="titulo">Agendamento</span>
+    <span class="titulo">Agendamentos</span>
     <hr />
     <div class="row">
-      <span [hidden]="!this.isHideProperty">Grid</span>
-
-      <div class="col s6">
-        <a [routerLink]="['/horarios', 'ins']">
-          <div class="card-panel center my-card-button edit">
-            <span class="white-text flow-text"> Salvar </span>
-          </div>
-        </a>
-      </div>
-      <div class="col s6">
-        <a [routerLink]="['/horarios', 'upd']">
-          <div class="card-panel center my-card-button edit">
-            <span class="white-text flow-text"> Editar </span>
-          </div>
-        </a>
+      <div>
+        <div
+          id="msg-login"
+          class="card-panel white-text"
+          [class.red]="!this.isSuccess"
+          [class.blue]="this.isSuccess"
+          *ngIf="this.isShowMessage"
+        >
+          {{ this.message }}
+        </div>
       </div>
 
+      <table class="responsive-table highlight" *ngIf="schedules && schedules!.length > 0">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Nome</th>
+            <th>Celular</th>
+            <th>E-mail</th>
+            <th>Evento</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let s of schedules">
+            <td>{{ s.data.toString() }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.event }}</td>
+            <td class="right">
+              <a
+                ><i class="material-icons my-icon-size" (click)="onEdit(s)"
+                  >edit</i
+                ></a
+              >
+              <a
+                ><i
+                  class="material-icons my-icon-size"
+                  (click)="onDelete(s.id)"
+                  >delete</i
+                ></a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
