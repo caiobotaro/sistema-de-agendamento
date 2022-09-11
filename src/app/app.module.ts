@@ -10,6 +10,7 @@ import { LandPageComponent } from './land-page/land-page.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ButtonComponent } from './button/button.component';
 import { FormsModule } from '@angular/forms';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    OrderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

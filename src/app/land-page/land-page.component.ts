@@ -21,6 +21,14 @@ export class LandPageComponent implements OnInit {
   message!: string;
   title: String = '';
 
+  key: string = 'data';
+  reverse: boolean = false;
+
+  sort(key: string) {
+      this.key = key;
+      this.reverse = !this.reverse;
+  }
+
   constructor(private scheduleService: ScheduleStorageService, private router: Router) { }
 
   ngOnInit(): void {
