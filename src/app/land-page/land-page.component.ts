@@ -39,14 +39,14 @@ export class LandPageComponent implements OnInit {
     this.router.navigate(['/horarios', schedule.id]);
   }
 
-  onDelete(id: string) {
+  onDelete(schedule: Schedule) {
     let confirmation = window.confirm(
-      'Você tem certeza que deseja remover ' + name
+      'Você tem certeza que deseja remover ' + schedule.name + '?'
     );
     if (!confirmation) {
       return;
     }
-    let response: boolean = this.scheduleService.delete(id);
+    let response: boolean = this.scheduleService.delete(schedule.id);
     this.isShowMessage = true;
     this.isSuccess = response;
     if (response) {
