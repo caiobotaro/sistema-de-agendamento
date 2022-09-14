@@ -1,0 +1,44 @@
+{
+  "schedules": [
+    {
+      "id": "1",
+      "name": "João da Silva",
+      "phone": 18981559966,
+      "email": "joaosilva@gmail.com",
+      "event": "Atendimento Aluno Um",
+      "data": "2022-09-18"
+    },
+    {
+      "id": "2",
+      "name": "Caio Henrique",
+      "phone": 18997999949,
+      "email": "caio@caio.com",
+      "event": "Reunião sobre Angular",
+      "data": "2022-09-15"
+    },
+    {
+      "id": "3",
+      "name": "Maria Souza",
+      "phone": 18996319955,
+      "email": "maria@maria.com",
+      "event": "Aula Dev Ops",
+      "data": "2022-11-03"
+    },
+    {
+      "id": "363",
+      "name": "Douglas Barros",
+      "phone": 1133335555,
+      "email": "douglas.barros@barros.com",
+      "event": "Promises Angular",
+      "data": "2022-12-07"
+    },
+    {
+      "id": "609",
+      "name": "Bruno Costa Silva",
+      "phone": 35997999977,
+      "email": "bruno@hotmail.com",
+      "event": "Serviço Angular Dois",
+      "data": "2022-12-10"
+    }
+  ]
+}
