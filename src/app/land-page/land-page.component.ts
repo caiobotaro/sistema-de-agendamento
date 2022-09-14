@@ -1,4 +1,4 @@
-import { ScheduleStorageService } from './../schedule/schedule-storage.service';
+import { SchedulePromiseService } from './../schedule/schedule-promise.service';
 import { Schedule } from './../model/schedule';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-land-page',
   templateUrl: './land-page.component.html',
   styleUrls: ['./land-page.component.css'],
-  providers: [ScheduleStorageService],
+  providers: [SchedulePromiseService],
 })
 export class LandPageComponent implements OnInit {
 
@@ -15,7 +15,6 @@ export class LandPageComponent implements OnInit {
 
   schedules?: Schedule[];
 
-  isSubmitted!: boolean;
   isShowMessage: boolean = false;
   isSuccess!: boolean;
   message!: string;
@@ -24,15 +23,15 @@ export class LandPageComponent implements OnInit {
   key: string = 'data';
   reverse: boolean = false;
 
+  constructor(private scheduleService: SchedulePromiseService, private router: Router) { }
+
   sort(key: string) {
       this.key = key;
       this.reverse = !this.reverse;
   }
 
-  constructor(private scheduleService: ScheduleStorageService, private router: Router) { }
-
   ngOnInit(): void {
-    this.schedules = this.scheduleService.getUsers();
+    this.getSchedules();
   }
 
   onEdit(schedule: Schedule) {
@@ -46,15 +45,31 @@ export class LandPageComponent implements OnInit {
     if (!confirmation) {
       return;
     }
-    let response: boolean = this.scheduleService.delete(schedule.id);
-    this.isShowMessage = true;
-    this.isSuccess = response;
-    if (response) {
+    this.scheduleService.delete(schedule.id)
+    .then(() => {
+      this.isShowMessage = true;
+      this.isSuccess = true;
       this.message = 'O item foi removido com sucesso!';
-    } else {
+
+      this.getSchedules();
+    })
+    .catch((e) => {
+      this.isShowMessage = true;
+      this.isSuccess = false;
       this.message = 'Ops! O item não pode ser removido!';
-    }
-    this.schedules = this.scheduleService.getUsers();
+    });
+
+  }
+
+  getSchedules() {
+    return this.scheduleService
+      .getAll()
+      .then((s: Schedule[]) => { this.schedules = s; })
+      .catch((e) => {
+        this.isShowMessage = true;
+        this.isSuccess = false;
+        this.message = "Erro ao carregar dados!" + e;
+      });
   }
 
 }

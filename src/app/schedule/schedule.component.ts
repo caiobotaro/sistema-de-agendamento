@@ -1,5 +1,5 @@
+import { SchedulePromiseService } from './schedule-promise.service';
 import { Shared } from './../util/shared';
-import { ScheduleStorageService } from './schedule-storage.service';
 import { Schedule } from './../model/schedule';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -11,12 +11,12 @@ import { NgForm } from '@angular/forms';
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css'],
-  providers: [ScheduleStorageService],
+  providers: [SchedulePromiseService],
 })
 export class ScheduleComponent implements OnInit {
   @ViewChild('form') form!: NgForm;
 
-  schedule!: Schedule;
+  schedule: Schedule = new Schedule('', '', '', '', '');
 
   isSubmitted!: boolean;
   isShowMessage: boolean = false;
@@ -24,18 +24,24 @@ export class ScheduleComponent implements OnInit {
   message!: string;
   title: String = '';
   label: String = '';
+  idParam: number = 0;
 
-  constructor(private route: ActivatedRoute, private scheduleService: ScheduleStorageService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private scheduleService: SchedulePromiseService, private router: Router) { }
 
   ngOnInit(): void {
-    let idParam = this.route.snapshot.params['id']!;
+    this.idParam = this.route.snapshot.params['id']!;
 
-    if (idParam == 0) {
-      Shared.initializeWebStorage();
-      this.schedule = new Schedule('', '', '', '', '');
+    if (this.idParam == 0) {
       this.title = 'Novo Evento';
     } else {
-      this.schedule = this.scheduleService.get(idParam);
+      this.scheduleService
+      .getById(this.idParam.toString())
+      .then((s: Schedule[]) => { this.schedule = s[0]; })
+      .catch((e) => {
+        this.isShowMessage = true;
+        this.isSuccess = false;
+        this.message = "Erro ao carregar dados!" + e;
+      });
       this.title = 'Editar Evento';
       this.label = 'active';
     }
@@ -43,7 +49,7 @@ export class ScheduleComponent implements OnInit {
 
   onSubmit() {
     this.isSubmitted = true;
-    if (!this.scheduleService.isExist(this.schedule.id)) {
+    if (this.idParam == 0) {
       this.scheduleService.save(this.schedule);
     } else {
       this.scheduleService.update(this.schedule);
@@ -53,25 +59,7 @@ export class ScheduleComponent implements OnInit {
     this.message = 'Cadastro realizado com sucesso!';
 
     this.form.reset();
-    this.schedule = new Schedule('', '', '', '', '');
     this.router.navigate(['/']);
-  }
-
-  onDelete(name: string) {
-    let confirmation = window.confirm(
-      'Você tem certeza que deseja remover ' + name
-    );
-    if (!confirmation) {
-      return;
-    }
-    let response: boolean = this.scheduleService.delete(name);
-    this.isShowMessage = true;
-    this.isSuccess = response;
-    if (response) {
-      this.message = 'O item foi removido com sucesso!';
-    } else {
-      this.message = 'Ops! O item não pode ser removido!';
-    }
   }
 
   onBack() {
