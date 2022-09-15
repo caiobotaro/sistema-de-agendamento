@@ -109,13 +109,13 @@
           <input
             id="input-data"
             name="input-data"
-            type="date"
+            type="datetime-local"
             class="validate"
             [(ngModel)]="this.schedule.data"
             #data="ngModel"
             required
           />
-          <label for="input-data" [class]="this.label">Data *</label>
+          <label for="input-data" class="active">Data *</label>
           <div class="red-text" [hidden]="data.valid || data.untouched">
             Por favor, informe a Data.
           </div>

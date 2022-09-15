@@ -1,4 +1,6 @@
+import { ScheduleService } from './../schedule/schedule.service';
 import { SchedulePromiseService } from './../schedule/schedule-promise.service';
+
 import { Schedule } from './../model/schedule';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -7,7 +9,7 @@ import { Router } from '@angular/router';
   selector: 'app-land-page',
   templateUrl: './land-page.component.html',
   styleUrls: ['./land-page.component.css'],
-  providers: [SchedulePromiseService],
+  providers: [SchedulePromiseService, ScheduleService],
 })
 export class LandPageComponent implements OnInit {
 
@@ -23,7 +25,10 @@ export class LandPageComponent implements OnInit {
   key: string = 'data';
   reverse: boolean = false;
 
-  constructor(private scheduleService: SchedulePromiseService, private router: Router) { }
+  constructor(
+    private schedulePromiseService: SchedulePromiseService,
+    private scheduleService: ScheduleService,
+    private router: Router) { }
 
   sort(key: string) {
       this.key = key;
@@ -45,7 +50,7 @@ export class LandPageComponent implements OnInit {
     if (!confirmation) {
       return;
     }
-    this.scheduleService.delete(schedule.id)
+    this.schedulePromiseService.delete(schedule.id)
     .then(() => {
       this.isShowMessage = true;
       this.isSuccess = true;
@@ -53,7 +58,7 @@ export class LandPageComponent implements OnInit {
 
       this.getSchedules();
     })
-    .catch((e) => {
+    .catch(() => {
       this.isShowMessage = true;
       this.isSuccess = false;
       this.message = 'Ops! O item não pode ser removido!';
@@ -62,14 +67,19 @@ export class LandPageComponent implements OnInit {
   }
 
   getSchedules() {
-    return this.scheduleService
+      return this.scheduleService
       .getAll()
-      .then((s: Schedule[]) => { this.schedules = s; })
-      .catch((e) => {
-        this.isShowMessage = true;
-        this.isSuccess = false;
-        this.message = "Erro ao carregar dados!" + e;
-      });
+      .subscribe(
+        (data: Schedule[]) => {
+          if (!data || data.length == 0) {
+            alert('Nenhum resultado foi encontrado!');
+          }
+          this.schedules = data;
+        },
+        (error) => {
+          alert(error.message);
+        }
+      );
   }
 
 }

@@ -40,6 +40,6 @@ Agenda:
 - [X] Cadastrar uma entidade usando uma API (JSON Server ou Firebase).
 - [X] Apresentar uma lista de dados com a diretiva estrutural ngFor.
 - [X] Usar a diretiva ngIf
-- [ ] Formatar a apresentação de dados com Pipes.
+- [X] Formatar a apresentação de dados com Pipes.
 - [ ] Build e deploy da aplicação.
 
