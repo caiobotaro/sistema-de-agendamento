@@ -36,8 +36,8 @@ Agenda:
 - [X] Passar dados entre componentes que representam diferentes telas via parâmetros de rotas. 
 - [X] Validar campos do formulário com REGEX e apresentar os erros.
 - [X] Desabilitar o botão de submit enquanto o formulário está inválido.
-- [ ] Fazer requisições a API com tratamento da resposta com Promises ou Observables.
-- [ ] Cadastrar uma entidade usando uma API (JSON Server ou Firebase).
+- [X] Fazer requisições a API com tratamento da resposta com Promises ou Observables.
+- [X] Cadastrar uma entidade usando uma API (JSON Server ou Firebase).
 - [X] Apresentar uma lista de dados com a diretiva estrutural ngFor.
 - [X] Usar a diretiva ngIf
 - [ ] Formatar a apresentação de dados com Pipes.
