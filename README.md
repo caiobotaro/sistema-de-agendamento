@@ -4,19 +4,15 @@ O usuário poderá cadastrar pessoas (clientes, pacientes, etc) e assim adicion�
 
 Acompanhar seus agendamentos em formato de listagem.
 
-Entidades:
-
-Pessoa:
-
-- Nome - Email - Telefone
+Entidade:
 
 Agenda:
 
-- Nome do evento - Dia - Hora – Pessoa
+- Nome - Email - Telefone - Nome do evento - Dia - Hora
 
 # Endereço de Deploy - GitHub Pages
 
-- N/A
+- https://caiobotaro.github.io/sistema-de-agendamento/
 
 # Protótipo
 
@@ -42,4 +38,3 @@ Agenda:
 - [X] Usar a diretiva ngIf
 - [X] Formatar a apresentação de dados com Pipes.
 - [X] Build e deploy da aplicação.
-
