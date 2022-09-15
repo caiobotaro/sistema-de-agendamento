@@ -44,10 +44,10 @@
 
         <tbody>
           <tr *ngFor="let s of schedules | orderBy: key : reverse; let i = index">
-            <td>{{ s.data.toString() }}</td>
+            <td>{{ s.data | date: 'dd/MM/yyyy HH:mm' }}</td>
             <td>{{ s.name }}</td>
             <td>{{ s.phone }}</td>
-            <td>{{ s.email }}</td>
+            <td>{{ s.email | lowercase }}</td>
             <td>{{ s.event }}</td>
             <td class="right">
               <a>
