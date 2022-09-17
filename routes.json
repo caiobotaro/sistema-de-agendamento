@@ -1,0 +1,4 @@
+{
+  "/horarios": "/schedules",
+  "/horarios/:id": "/schedules?id=:id"
+}
